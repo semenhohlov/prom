@@ -29,7 +29,7 @@
                             <a class="nav-link" aria-current="page" href="category">Категории</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/">Товары</a>
+                            <a class="nav-link" aria-current="page" href="product">Товары</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="/">Метки</a>

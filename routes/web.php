@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::post('/import', [ImportController::class, 'saveFile']);
 Route::get('/category', [CategoryController::class, 'show']);
 Route::get('/category/tree', [CategoryController::class, 'show_tree']);
 Route::post('/category', [CategoryController::class, 'import']);
+// product
+Route::get('/product', [ProductController::class, 'show']);
 
 Route::get('/', function () {
     return view('layout');
