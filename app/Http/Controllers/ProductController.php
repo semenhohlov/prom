@@ -11,6 +11,7 @@ class ProductController extends Controller
     {
         $perPage = session('perPage', 20);
         $search = '';
+        $resultFull = [];
         if ($request->has('perPage'))
         {
             $perPage = $request->input('perPage');
@@ -19,6 +20,10 @@ class ProductController extends Controller
         if ($request->has('search'))
         {
             $search = $request->input('search');
+            $resultFull = Product::
+                where('name', '=', $search)
+                ->orWhere('vendor_code', '=', $search)
+                ->orderBy('id', 'desc')->get();
             $result = Product::
                 where('name', 'like', '%'.$search.'%')
                 ->orWhere('vendor_code', 'like', '%'.$search.'%')
@@ -29,6 +34,7 @@ class ProductController extends Controller
             $result = Product::orderBy('id', 'desc')->paginate($perPage);
         }
         return view('product.table', [
+            'resultFull' => $resultFull,
             'result' => $result,
             'perPage' => $perPage,
             'search' => $search

@@ -6,7 +6,8 @@
 @isset($result)
     @if($search)
     <div class="alert alert-info mt-3">
-        По запросу <em>"{{ $search }}"</em> найдено {{ $result->total() }} позиций.
+        По запросу <em>"{{ $search }}"</em> найдено {{ count($resultFull) }} позиций.<br>
+        Частичное совпадение {{ $result->total() }} позиций.
     </div>
     @endif
     <table class="table">
@@ -19,6 +20,18 @@
             </tr>
         </thead>
         <tbody>
+        @isset($resultFull)
+            @foreach($resultFull as $item)
+                <tr>
+                <th scope="row">{{ $item->name }}<br>
+                арт: {{ $item->vendor_code }}
+                </th>
+                <td>{{ $item->price }}</td>
+                <td>{{ $item->availability }}</td>
+                <td> ;-)
+                </tr>
+            @endforeach
+        @endisset
         @foreach($result as $item)
             <tr>
             <th scope="row">{{ $item->name }}<br>
