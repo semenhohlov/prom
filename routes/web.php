@@ -24,7 +24,10 @@ Route::get('/category', [CategoryController::class, 'show']);
 Route::get('/category/tree', [CategoryController::class, 'show_tree']);
 Route::post('/category', [CategoryController::class, 'import']);
 // product
-Route::get('/product', [ProductController::class, 'show']);
+Route::prefix('product')->group(function () {
+    Route::get('/', [ProductController::class, 'show']);
+    Route::get('/{id}', [ProductController::class, 'item']);
+});
 
 Route::get('/', function () {
     return view('layout');

@@ -15,4 +15,8 @@ class Product extends Model
     {
         return $this->hasMany(Specification::class);
     }
+    public function thumbnail ()
+    {
+        return $this->hasOne(Thumbnail::class);
+    }
 }

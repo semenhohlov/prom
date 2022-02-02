@@ -20,28 +20,30 @@
             </tr>
         </thead>
         <tbody>
-        @isset($resultFull)
-            @foreach($resultFull as $item)
+            @isset($resultFull)
+                @foreach($resultFull as $item)
+                    <tr>
+                    <th scope="row">
+                        <a href="{{ url()->current() }}/{{ $item->id }}">{{ $item->name }}</a><br>
+                        арт: {{ $item->vendor_code }}
+                    </th>
+                    <td>{{ $item->price }}</td>
+                    <td>{{ $item->availability }}</td>
+                    <td> ;-)</td>
+                    </tr>
+                @endforeach
+            @endisset
+            @foreach($result as $item)
                 <tr>
-                <th scope="row">{{ $item->name }}<br>
-                арт: {{ $item->vendor_code }}
-                </th>
-                <td>{{ $item->price }}</td>
-                <td>{{ $item->availability }}</td>
-                <td> ;-)
+                    <th scope="row">
+                        <a href="{{ url()->current() }}/{{ $item->id }}">{{ $item->name }}</a><br>
+                        арт: {{ $item->vendor_code }}
+                    </th>
+                    <td>{{ $item->price }}</td>
+                    <td>{{ $item->availability }}</td>
+                    <td> ;-)</td>
                 </tr>
             @endforeach
-        @endisset
-        @foreach($result as $item)
-            <tr>
-            <th scope="row">{{ $item->name }}<br>
-            арт: {{ $item->vendor_code }}
-            </th>
-            <td>{{ $item->price }}</td>
-            <td>{{ $item->availability }}</td>
-            <td> ;-)
-            </tr>
-        @endforeach
         </tbody>
     </table>
     <div class="d-flex justify-content-between">

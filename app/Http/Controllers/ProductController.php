@@ -19,11 +19,14 @@ class ProductController extends Controller
         session(['perPage' => $perPage]);
         if ($request->has('search'))
         {
-            $search = $request->input('search');
-            $resultFull = Product::
-                where('name', '=', $search)
-                ->orWhere('vendor_code', '=', $search)
-                ->orderBy('id', 'desc')->get();
+            if (!$request->has('page'))
+            {
+                $search = $request->input('search');
+                $resultFull = Product::
+                    where('name', '=', $search)
+                    ->orWhere('vendor_code', '=', $search)
+                    ->orderBy('id', 'desc')->get();
+            }
             $result = Product::
                 where('name', 'like', '%'.$search.'%')
                 ->orWhere('vendor_code', 'like', '%'.$search.'%')
@@ -39,5 +42,12 @@ class ProductController extends Controller
             'perPage' => $perPage,
             'search' => $search
         ]);
+    }
+
+    public function item (Request $request, $id)
+    {
+        $item = Product::find($id);
+        // dd($item);
+        return view('product.item', ['item' => $item]);
     }
 }
