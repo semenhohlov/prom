@@ -36,6 +36,11 @@ class CategoryController extends Controller
                 $data = fgetcsv($h, 1024000); // first string
                 while (($data = fgetcsv($h, 1024000)) !== FALSE)
                 {
+                    $cat = Category::where('group_number', intval($data[0]))->first();
+                    if ($cat)
+                    {
+                        continue;
+                    }
                     $category = Category::create([
                         'group_number' => intval($data[0]),
                         'group_name' => $data[1],
@@ -56,5 +61,30 @@ class CategoryController extends Controller
             }
         }
         return view('category.category', ['rows' => $rows]);
+    }
+    public function compare(Request $request)
+    {
+        if ($request->hasFile('filename'))
+        {
+            $hash = $request->filename->hashName();
+            $realPath = $request->filename->getRealPath();
+            $request->filename->store('import');
+            $path = Storage::path('import/'.$hash);
+            $xml = simplexml_load_file($path);
+            // dd($xml);
+            $loaded = [];
+            $cats = Category::all();
+            foreach ($xml->shop->categories->category as $category)
+            {
+                $cat = [
+                    'group_id' => (string) $category['id'],
+                    'group_name' => (string) $category,
+                    'group_parent_id' => (string) $category['parentId']
+                ];
+                array_push($loaded, $cat);
+            }
+            return view('category.compare', ['loaded' => $loaded, 'cats' => $cats]);
+        }
+        return view('category.compare');
     }
 }

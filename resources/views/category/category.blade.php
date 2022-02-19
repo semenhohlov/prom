@@ -33,14 +33,12 @@
                         </div>
                         <input class="btn btn-primary" type="submit" value="Загрузить">
                     </form>
-</div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{{ url('/category/compare') }}">Сопоставление</a>
             </li>
         </ul>
-        <form class="d-flex">
-            @csrf
-            <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search" name="search">
-            <button class="btn btn-outline-success" type="submit">&#128269;</button>
-        </form>
     </div>
 </nav>
 @isset($rows)

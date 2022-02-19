@@ -29,7 +29,7 @@
                     </th>
                     <td>{{ $item->price }}</td>
                     <td>{{ $item->availability }}</td>
-                    <td> ;-)</td>
+                    <td><img src="{{url('storage/thumbs/' . $item->thumbnail->name)}}" /></td>
                     </tr>
                 @endforeach
             @endisset
@@ -41,7 +41,7 @@
                     </th>
                     <td>{{ $item->price }}</td>
                     <td>{{ $item->availability }}</td>
-                    <td> ;-)</td>
+                    <td><img src="{{url('storage/thumbs/' . $item->thumbnail->name)}}" /></td>
                 </tr>
             @endforeach
         </tbody>

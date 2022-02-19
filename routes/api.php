@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('categories')->group(function(){
+    Route::get('/', [CategoryAPIController::class, 'show']);
+    Route::post('/', [CategoryAPIController::class, 'upload_price']);
+    Route::post('/add', [CategoryAPIController::class, 'add_accordance']);
 });
