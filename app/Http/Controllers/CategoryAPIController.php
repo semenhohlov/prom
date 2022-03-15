@@ -33,14 +33,15 @@ class CategoryAPIController extends Controller
         $xml = simplexml_load_file($path);
         // dd($xml);
         $loaded = [];
-        $suplier = (string) $xml->shop->name;
         // $cats = Category::all();
         if ($xml->shop)
         {
             $categories = $xml->shop->categories->category;
+            $suplier = (string) $xml->shop->name;
         } else
         {
             $categories = $xml->categories->category;
+            $suplier = (string) $xml->name;
         }
         foreach ($categories as $category)
         {
