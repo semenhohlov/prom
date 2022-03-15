@@ -35,7 +35,14 @@ class CategoryAPIController extends Controller
         $loaded = [];
         $suplier = (string) $xml->shop->name;
         // $cats = Category::all();
-        foreach ($xml->shop->categories->category as $category)
+        if ($xml->shop)
+        {
+            $categories = $xml->shop->categories->category;
+        } else
+        {
+            $categories = $xml->categories->category;
+        }
+        foreach ($categories as $category)
         {
             $group_number = '';
             $group_prom_name = '';

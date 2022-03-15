@@ -18,7 +18,7 @@ class CreateAccordanceCategoriesTable extends Migration
             $table->string('supplier');
             $table->bigInteger('group_number');
             $table->bigInteger('group_id');
-            $table->bigInteger('group_parent_id');
+            $table->bigInteger('group_parent_id')->nullable();
             $table->string('group_name');
             $table->string('group_prom_name');
             $table->timestamps();
