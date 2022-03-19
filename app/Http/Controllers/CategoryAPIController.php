@@ -145,7 +145,7 @@ class CategoryAPIController extends Controller
         {
             return [
                 'Message' => 'Error updating category '.$id.'.',
-                'Error' => $e->message
+                'Error' => $e->getMessage()
             ];
         }
         return [
