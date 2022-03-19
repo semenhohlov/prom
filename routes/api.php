@@ -19,4 +19,6 @@ Route::prefix('categories')->group(function(){
     Route::get('/', [CategoryAPIController::class, 'show']);
     Route::post('/', [CategoryAPIController::class, 'upload_price']);
     Route::post('/add', [CategoryAPIController::class, 'add_accordance']);
+    Route::get('/prom', [CategoryAPIController::class, 'show_prom']);
+    Route::patch('/prom/{id}', [CategoryAPIController::class, 'update_prom']);
 });
