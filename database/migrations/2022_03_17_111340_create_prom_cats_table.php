@@ -21,7 +21,6 @@ class CreatePromCatsTable extends Migration
             $table->string('category_4')->nullable();
             $table->string('category_url');
             $table->bigInteger('category_id');
-            $table->timestamps();
         });
     }
 

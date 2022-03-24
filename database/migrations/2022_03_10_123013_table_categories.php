@@ -14,12 +14,12 @@ class TableCategories extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->bigInteger('prom_group_id');
-            $table->string('prom_cat_adress'); 
-            $table->string('prom_cat_1'); 
-            $table->string('prom_cat_2'); 
-            $table->string('prom_cat_3'); 
-            $table->string('prom_cat_4'); 
+            $table->bigInteger('prom_group_id')->nullable();
+            $table->string('prom_cat_adress')->nullable(); 
+            $table->string('prom_cat_1')->nullable(); 
+            $table->string('prom_cat_2')->nullable(); 
+            $table->string('prom_cat_3')->nullable(); 
+            $table->string('prom_cat_4')->nullable(); 
         });
     }
 
