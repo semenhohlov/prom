@@ -30,7 +30,12 @@ class CategoryAPIController extends Controller
     public function upload_price(Request $request)
     {
         // return Categories, uploadedCategories + accordanceCategories
+
         $path = $this->save_file($request);
+        if (!$path)
+        {
+            return ['message' => 'Error!!!'];
+        }
         $xml = simplexml_load_file($path);
         // dd($xml);
         $loaded = [];
@@ -150,6 +155,31 @@ class CategoryAPIController extends Controller
         }
         return [
             'Message' => 'ok'
+        ];
+    }
+
+    public function load_prom_groups()
+    {
+        $headers = array (
+            'Authorization: Bearer fe4def2b10da73bd75351c723798d24a584579a7',
+            'Content-Type: application/json'
+        );
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://my.prom.ua/api/v1/groups/list?limit=100&last_id=105571344');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($ch);
+        $err = '';
+        if (!$result)
+        {
+            $err = curl_error($ch);
+        }
+        curl_close($ch);
+
+        return [
+            'Message' => 'ok',
+            'error' => $err,
+            'data' => json_decode($result, true)
         ];
     }
 }

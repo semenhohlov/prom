@@ -21,4 +21,5 @@ Route::prefix('categories')->group(function(){
     Route::post('/add', [CategoryAPIController::class, 'add_accordance']);
     Route::get('/prom', [CategoryAPIController::class, 'show_prom']);
     Route::patch('/prom/{id}', [CategoryAPIController::class, 'update_prom']);
+    Route::get('/prom/load', [CategoryAPIController::class, 'load_prom_groups']);
 });
